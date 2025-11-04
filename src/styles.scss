@@ -1,16 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
-/* Variables CSS Modernas */
+/* Variables CSS - Comidas Light */
 :root {
-  --primary-color: #25D366;
-  --primary-dark: #128C7E;
-  --primary-light: #34E877;
-  --secondary-color: #075E54;
-  --text-dark: #1a1a1a;
-  --text-light: #666;
-  --bg-light: #f8f9fa;
+  --primary-color: #7A9B76;
+  --primary-dark: #4A6B52;
+  --primary-light: #9CB899;
+  --accent-color: #D4936B;
+  --accent-light: #E5B896;
+  --bg-cream: #F5F1E8;
+  --bg-light: #FAFAF8;
+  --text-dark: #2C3E37;
+  --text-light: #5A6B5E;
   --white: #ffffff;
-  --shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 5px 30px rgba(0, 0, 0, 0.15);
+  --shadow: 0 2px 20px rgba(74, 107, 82, 0.1);
+  --shadow-hover: 0 5px 30px rgba(74, 107, 82, 0.15);
   --transition: all 0.3s ease;
 }
 
@@ -26,21 +27,20 @@ body {
   color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
+  background: var(--bg-light);
 }
 
-/* Smooth Scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Contenedor General */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Botones Principales */
+/* Botones */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -64,6 +64,7 @@ html {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
 }
 
 .btn-secondary {
@@ -75,6 +76,17 @@ html {
 .btn-secondary:hover {
   background: var(--primary-color);
   color: white;
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Utilidades */

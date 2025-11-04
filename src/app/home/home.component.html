@@ -3,16 +3,14 @@
   <div class="container">
     <div class="nav-content">
       <div class="logo">
-        <h2>🚚 Suministros Delivery</h2>
+        <img src="assets/images/logo.png" alt="Comidas Light Logo" class="logo-img">
+        <span class="logo-text">{{ businessName }}</span>
       </div>
-      <ul class="nav-menu">
-        <li><a (click)="scrollToSection('quienes-somos')">Quiénes Somos</a></li>
-        <li><a (click)="scrollToSection('que-hacemos')">Qué Hacemos</a></li>
-        <li><a (click)="scrollToSection('contacto')">Contacto</a></li>
-      </ul>
-      <a [href]="whatsappLink" target="_blank" class="btn btn-primary">
-        📱 Hacé tu Pedido
-      </a>
+      <div class="nav-actions">
+        <a [href]="whatsappLink" target="_blank" class="btn btn-primary btn-small">
+          💬 Pedí Ahora
+        </a>
+      </div>
     </div>
   </div>
 </nav>
@@ -22,129 +20,96 @@
   <div class="container">
     <div class="hero-content">
       <h1 class="hero-title">
-        Entrega Rápida y Confiable<br>
-        <span class="highlight">Directo a tu Puerta</span>
+        Comé Rico, Sano y <span class="highlight">Sin Cocinar</span>
       </h1>
       <p class="hero-subtitle">
-        Tu proveedor de confianza para todos tus suministros. 
-        Pedí ahora por WhatsApp y recibí en el día.
+        Viandas saludables elaboradas por nutricionistas.<br>
+        Perfectas para tu dieta, diabetes o hipertensión.
       </p>
       <div class="hero-buttons">
         <a [href]="whatsappLink" target="_blank" class="btn btn-primary btn-large">
-          💬 Contactar por WhatsApp
+          <span class="btn-icon">📱</span>
+          <span>Consultar por WhatsApp</span>
         </a>
-        <button (click)="scrollToSection('quienes-somos')" class="btn btn-secondary btn-large">
-          Conocer Más
-        </button>
+      </div>
+      <p class="hero-note">🌿 Más de 10 años cuidando tu alimentación en La Plata</p>
+    </div>
+  </div>
+</section>
+
+<!-- Beneficios -->
+<section id="beneficios" class="section benefits-section">
+  <div class="container">
+    <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+    
+    <div class="benefits-grid">
+      <div class="benefit-card" *ngFor="let benefit of benefits">
+        <div class="benefit-icon">{{ benefit.icon }}</div>
+        <h3>{{ benefit.title }}</h3>
+        <p>{{ benefit.description }}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Quiénes Somos -->
-<section id="quienes-somos" class="section">
+<section id="nosotros" class="section about-section">
   <div class="container">
-    <h2 class="section-title">Quiénes Somos</h2>
-    <p class="section-description">
-      Somos una empresa dedicada a la entrega de suministros con más de 10 años de experiencia. 
-      Nos especializamos en brindar un servicio rápido, confiable y personalizado para tu negocio o hogar.
-    </p>
-    
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🚚</div>
-        <h3>Entrega Rápida</h3>
-        <p>Entregas en el día o coordinamos el horario que mejor te convenga</p>
+    <div class="about-content">
+      <div class="about-text">
+        <h2 class="section-title-left">Somos lo que comemos</h2>
+        <p class="about-description">
+          En <strong>Comidas Light</strong> creemos que una buena alimentación es la base del bienestar. 
+          Por eso ofrecemos viandas caseras, elaboradas con los mejores ingredientes, pensadas 
+          especialmente para quienes necesitan cuidar su salud sin renunciar al sabor.
+        </p>
+        <p class="about-description">
+          Con más de <strong>10 años de experiencia</strong> y el respaldo de profesionales de la nutrición, 
+          nos dedicamos a que puedas mantener tu plan de alimentación de forma práctica y deliciosa.
+        </p>
+        <div class="about-features">
+          <div class="feature-tag">✓ Hiposódicas</div>
+          <div class="feature-tag">✓ Hipograsas</div>
+          <div class="feature-tag">✓ Hipocalóricas</div>
+          <div class="feature-tag">✓ Freezadas</div>
+        </div>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">✓</div>
-        <h3>Calidad Garantizada</h3>
-        <p>Productos de primera calidad con garantía en todos nuestros suministros</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3>Atención Personalizada</h3>
-        <p>Te asesoramos para elegir los productos que mejor se adapten a tus necesidades</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">💰</div>
-        <h3>Mejores Precios</h3>
-        <p>Precios competitivos y promociones especiales para clientes frecuentes</p>
+      <div class="about-image">
+        <div class="image-placeholder">
+          <span class="placeholder-icon">🥗</span>
+          <p>Viandas saludables<br>y deliciosas</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Qué Hacemos -->
-<section id="que-hacemos" class="section section-alt">
+<!-- Contacto -->
+<section id="contacto" class="section contact-section">
   <div class="container">
-    <h2 class="section-title">Qué Hacemos</h2>
-    <p class="section-description">
-      Ofrecemos una amplia variedad de suministros para tu negocio, oficina o hogar
-    </p>
-    
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">📦</div>
-        <h3>Artículos de Oficina</h3>
-        <p>Papelería, carpetas, archivos, útiles escolares y todo lo necesario para tu oficina</p>
-      </div>
+    <div class="contact-content">
+      <h2 class="section-title">¿Listo para Empezar?</h2>
+      <p class="contact-description">
+        Contactanos por WhatsApp y te asesoramos personalmente
+      </p>
       
-      <div class="service-card">
-        <div class="service-icon">🧹</div>
-        <h3>Productos de Limpieza</h3>
-        <p>Detergentes, desinfectantes, artículos de limpieza profesional e industrial</p>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon">🍽️</div>
-        <h3>Descartables</h3>
-        <p>Vasos, platos, cubiertos y bandejas descartables para eventos y comercios</p>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3>Insumos Industriales</h3>
-        <p>Herramientas, elementos de seguridad y suministros para la industria</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <a [href]="whatsappLink" target="_blank" class="btn btn-accent btn-large cta-button">
+        <span class="btn-icon">💬</span>
+        <span>Hacer mi Pedido</span>
+      </a>
 
-<!-- Contacto y Redes -->
-<section id="contacto" class="section section-contact">
-  <div class="container">
-    <h2 class="section-title">Contactanos</h2>
-    <p class="section-description">
-      Estamos disponibles para atenderte. ¡Hacé tu pedido ahora!
-    </p>
-    
-    <div class="social-links">
-      <a href="https://facebook.com" target="_blank" class="social-link">
-        <span class="social-icon">📘</span>
-        <span>Facebook</span>
-      </a>
-      <a href="https://instagram.com" target="_blank" class="social-link">
-        <span class="social-icon">📷</span>
-        <span>Instagram</span>
-      </a>
-      <a href="https://linkedin.com" target="_blank" class="social-link">
-        <span class="social-icon">💼</span>
-        <span>LinkedIn</span>
-      </a>
-      <a href="https://twitter.com" target="_blank" class="social-link">
-        <span class="social-icon">🐦</span>
-        <span>Twitter</span>
-      </a>
-    </div>
-    
-    <div class="cta-large">
-      <a [href]="whatsappLink" target="_blank" class="btn btn-primary btn-large">
-        💬 Contactar por WhatsApp
-      </a>
+      <div class="social-links">
+        <a [href]="instagramLink" target="_blank" class="social-link" rel="noopener">
+          <span class="social-icon"><img src="assets/images/instaLogo.png" alt="Instagram" width="48" height="48"></span>
+          <span>Instagram</span>
+        </a>
+        <a [href]="facebookLink" target="_blank" class="social-link" rel="noopener">
+          <span class="social-icon"><img src="assets/images/face.png" alt="Facebook"  width="48" height="48" ></span>
+          <span>Facebook</span>
+        </a>
+      </div>
+
+      <p class="location-info">📍 Tolosa, La Plata - Buenos Aires</p>
     </div>
   </div>
 </section>
@@ -153,35 +118,38 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
-      <div class="footer-section">
-        <h3>Suministros Delivery</h3>
-        <p>Tu proveedor de confianza desde 2014</p>
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Comidas Light" class="footer-logo">
+        <p>{{ businessName }}</p>
+        <p class="footer-tagline">Nutrición y sabor en cada comida</p>
       </div>
       
-      <div class="footer-section">
-        <h4>Enlaces Rápidos</h4>
-        <ul>
-          <li><a (click)="scrollToSection('quienes-somos')">Quiénes Somos</a></li>
-          <li><a (click)="scrollToSection('que-hacemos')">Qué Hacemos</a></li>
-          <li><a (click)="scrollToSection('contacto')">Contacto</a></li>
-        </ul>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p>📱 221 596-3237</p>
+        <p>📍 Tolosa, La Plata</p>
       </div>
-      
-      <div class="footer-section">
+
+      <div class="footer-social">
         <h4>Seguinos</h4>
-        <div class="footer-social">          
-          <a href="https://instagram.com/comidaslightviandas" target="_blank"><img src="assets/images/instaLogo.png" alt="Instagram" width="48" height="48"></a>                    
+        <div class="footer-social-links">
+          <a [href]="instagramLink" target="_blank" rel="noopener">Instagram</a>
+          <a [href]="facebookLink" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; 2025 Suministros Delivery. Todos los derechos reservados.</p>
+      <p>&copy; 2024 Comidas Light. Todos los derechos reservados.</p>
+      <p class="developer-credit">
+        Desarrollado por 
+        <a href="https://github.com/IgnacioMarianoMoscaUNLP" target="_blank" rel="noopener">Ignacio Moscá</a>
+      </p>
     </div>
   </div>
 </footer>
 
 <!-- Botón Flotante de WhatsApp -->
-<a [href]="whatsappLink" target="_blank" class="whatsapp-float">
+<a [href]="whatsappLink" target="_blank" class="whatsapp-float" title="Contactar por WhatsApp">
   <span class="whatsapp-icon">💬</span>
 </a>
