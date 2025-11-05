@@ -1,0 +1,10 @@
+<article class="menu-card" (click)="toggleDesplegar()" [class.expanded]="desplegado">
+  <div class="card-header">
+    <h2>{{ nombre }}</h2>
+    <span class="toggle-icon">{{ desplegado ? '−' : '+' }}</span>
+  </div>
+
+  <ul class="platos-list" *ngIf="desplegado">
+    <li *ngFor="let plato of platos">{{ plato.nombre }}</li>
+  </ul>
+</article>

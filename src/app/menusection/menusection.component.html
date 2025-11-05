@@ -1,0 +1,10 @@
+<section class="menu-section">
+  <h1>Nuestra Carta</h1>
+  <div class="menu-grid">
+    <app-menucard  
+    *ngFor="let categoria of menuCategories"  
+    [nombre]="categoria.titulo"
+    [platos]="categoria.items">
+</app-menucard>
+  </div>
+</section>

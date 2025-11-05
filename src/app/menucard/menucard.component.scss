@@ -1,0 +1,96 @@
+.menu-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    margin-bottom: 1.5rem;
+    
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  .platos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      position: relative;
+      padding-left: 1.5rem;
+      
+      &::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: #667eea;
+        font-weight: bold;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.2s ease;
+      }
+
+      &:hover {
+        color: #667eea;
+        padding-left: 2rem;
+        
+        &::before {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-card {
+    padding: 1.5rem;
+    
+    .card-header h2 {
+      font-size: 1.25rem;
+    }
+    
+    .platos-list li {
+      font-size: 0.9rem;
+    }
+  }
+}

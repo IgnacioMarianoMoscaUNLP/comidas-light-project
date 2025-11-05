@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { ɵEmptyOutletComponent } from "@angular/router";
+import { MenusectionComponent } from '../menusection/menusection.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ɵEmptyOutletComponent, MenusectionComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+navegarA(arg0: any) {
+throw new Error('Method not implemented.');
+}
+toggleMenu() {
+throw new Error('Method not implemented.');
+}
   whatsappLink: string;
   instagramLink: string;
   facebookLink: string;
@@ -38,6 +46,8 @@ export class HomeComponent {
       description: 'Servicio de delivery en La Plata y alrededores. Tu alimentación sin complicaciones.'
     }
   ];
+isMenuOpen: any;
+secciones: any;
 
   constructor() {
     const phone = environment.whatsappNumber;
