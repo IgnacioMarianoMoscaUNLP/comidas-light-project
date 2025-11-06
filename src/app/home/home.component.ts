@@ -22,22 +22,22 @@ export class HomeComponent {
   // Beneficios principales
   benefits = [
     {
-      icon: '🥗',
+      icon: 'assets/images/comida-saludable.png',
       title: 'Viandas Saludables',
       description: 'Hiposódicas, hipograsas e hipocalóricas. Perfectas para tu plan de alimentación.'
     },
     {
-      icon: '❄️',
+      icon: 'assets/images/frezzer.png',
       title: 'Freezadas y Frescas',
       description: 'Elaboradas con los mejores ingredientes. Listas para consumir cuando las necesites.'
     },
     {
-      icon: '👩‍⚕️',
+      icon: 'assets/images/nutricionista-icon.png',
       title: 'Respaldo Nutricional',
-      description: 'Asesoramiento personalizado con nuestra nutricionista. Más de 10 años de experiencia.'
+      description: 'Asesoramiento personalizado con nuestra nutricionista. Más de 15 años de experiencia.'
     },
     {
-      icon: '🏠',
+      icon: 'assets/images/home-icon.png',
       title: 'Entrega a Domicilio',
       description: 'Servicio de delivery en La Plata y alrededores. Tu alimentación sin complicaciones.'
     }
