@@ -3,21 +3,17 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { ɵEmptyOutletComponent } from "@angular/router";
 import { MenusectionComponent } from '../menusection/menusection.component';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent, MenusectionComponent],
+  imports: [CommonModule, ɵEmptyOutletComponent, MenusectionComponent, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-navegarA(arg0: any) {
-throw new Error('Method not implemented.');
-}
-toggleMenu() {
-throw new Error('Method not implemented.');
-}
+
   whatsappLink: string;
   instagramLink: string;
   facebookLink: string;
