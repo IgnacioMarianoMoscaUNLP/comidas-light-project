@@ -136,6 +136,7 @@
   
   padding: 60px 70px;
   max-width: 900px;
+  margin: 0 auto; // ← AGREGAR ESTA LÍNEA
   text-align: center;
   
   animation: fadeInUp 0.8s ease-out;
@@ -143,9 +144,10 @@
   // Tablet
   @include respond-max('md') {
     padding: 40px 30px;
-    margin: 0 20px;
+    margin: 0 auto; // ← MANTENER AQUÍ TAMBIÉN
   }
 }
+
 
 .hero-title {
   font-size: 3.5rem;
@@ -332,15 +334,18 @@
   border-radius: 24px;
   padding: 2.8rem 2.2rem;
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(45, 95, 63, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100%;
+  cursor: pointer;
   
+  // Fondo gradiente oculto
   &::before {
     content: '';
     position: absolute;
@@ -348,27 +353,42 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(74, 155, 111, 0.05) 0%, rgba(139, 195, 74, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(74, 155, 111, 0.08) 0%, rgba(139, 195, 74, 0.08) 100%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 0;
   }
   
   &:hover {
-    transform: translateY(-8px);
+    // Elevación importante
+    transform: translateY(-12px) scale(1.02);
+    
+    // Sombra aumentada (da la sensación de profundidad)
+    box-shadow: 
+      0 8px 16px rgba(45, 95, 63, 0.12),
+      0 16px 32px rgba(0, 0, 0, 0.08);
+    
     border-color: var(--primary-light);
-    box-shadow: var(--shadow-lg);
     background: var(--bg-white);
     
+    // Activar el gradiente de fondo
     &::before {
       opacity: 1;
     }
     
+    // Animación del ícono
     .benefit-icon {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(1.15) rotate(10deg);
+      filter: drop-shadow(0 4px 12px rgba(139, 195, 74, 0.3));
+    }
+    
+    // Color del título en hover
+    h3 {
+      color: var(--primary-light);
     }
   }
   
+  // Contenido encima del efecto de fondo
   > * {
     position: relative;
     z-index: 1;
@@ -380,6 +400,7 @@
     color: var(--primary-dark);
     font-weight: 700;
     line-height: 1.4;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     // Móvil
     @include respond-max('sm') {
@@ -402,6 +423,10 @@
   // Móvil
   @include respond-max('sm') {
     padding: 1.5rem 1rem;
+    
+    &:hover {
+      transform: translateY(-8px) scale(1.01);
+    }
   }
   
   // Animación de entrada
@@ -421,6 +446,7 @@
     
     &:hover {
       transform: none;
+      box-shadow: var(--shadow-md);
     }
   }
 }
@@ -429,14 +455,15 @@
   font-size: 4rem;
   margin-bottom: 1.5rem;
   display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   // Móvil
   @include respond-max('sm') {
     font-size: 2.5rem;
   }
 }
+
 
 @keyframes slideInUp {
   from {

@@ -3,8 +3,10 @@
     <div class="nav-content">
       <!-- Logo -->
       <div class="logo">
-        <img src="assets/images/logo.png" alt="Comidas Light Logo" class="logo-img">
-        <span class="handwritten handwritten-medium">{{ businessName }}</span>
+        <button class="logo-btn" (click)="navigateToSection('hero-section')">
+          <img src="assets/images/logo.png" alt="Comidas Light Logo" class="logo-img">
+          <span class="handwritten handwritten-medium">{{ businessName }}</span>
+        </button> 
       </div>
       
       <!-- Botón hamburguesa (ESTO FALTABA) -->
