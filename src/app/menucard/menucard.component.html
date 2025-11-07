@@ -1,7 +1,16 @@
-<article class="menu-card" (click)="toggleDesplegar()" [class.expanded]="desplegado">
+<article 
+  class="menu-card" 
+  (click)="toggleDesplegar()" 
+  [class.expanded]="desplegado"
+  role="button"
+  [attr.aria-expanded]="desplegado"
+  tabindex="0"
+  (keydown.enter)="toggleDesplegar()"
+  (keydown.space)="toggleDesplegar(); $event.preventDefault()"
+>
   <div class="card-header">
     <h2>{{ nombre }}</h2>
-    <span class="toggle-icon">{{ desplegado ? '−' : '+' }}</span>
+    <span class="toggle-icon" aria-hidden="true">{{ desplegado ? '−' : '+' }}</span>
   </div>
 
   <ul class="platos-list" *ngIf="desplegado">

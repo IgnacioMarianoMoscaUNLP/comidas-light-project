@@ -1,0 +1,37 @@
+// src/styles/_mixins.scss
+
+// Definir los breakpoints
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Mixin para media queries - Mobile First
+@mixin respond-to($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+  
+  @if $size {
+    @media (min-width: $size) {
+      @content;
+    }
+  } @else {
+    @warn "El breakpoint '#{$breakpoint}' no existe";
+  }
+}
+
+// Mixin para tamaños máximos (opcional, por si lo necesitas)
+@mixin respond-max($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+  
+  @if $size {
+    @media (max-width: $size - 1px) {
+      @content;
+    }
+  } @else {
+    @warn "El breakpoint '#{$breakpoint}' no existe";
+  }
+}

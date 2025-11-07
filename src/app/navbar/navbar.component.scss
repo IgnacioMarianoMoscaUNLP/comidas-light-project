@@ -1,4 +1,7 @@
-// Variables
+// ========== IMPORTS ==========
+@import '../../styles/mixins'; // ← AGREGAR ESTO AL INICIO
+
+// ========== VARIABLES ==========
 $primary-green: #2d5016;
 $light-green: #7fb069;
 $medium-green: #6a994e;
@@ -6,7 +9,7 @@ $white: #ffffff;
 $navbar-height: 80px;
 $mobile-menu-width: 280px;
 
-// Mixins
+// ========== MIXINS LOCALES ==========
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -16,7 +19,7 @@ $mobile-menu-width: 280px;
   transition: $properties $duration ease;
 }
 
-// Navbar principal
+// ========== NAVBAR PRINCIPAL ==========
 .navbar {
   position: fixed;
   top: 0;
@@ -32,6 +35,16 @@ $mobile-menu-width: 280px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    
+    // Tablet
+    @include respond-max('lg') {
+      padding: 0 1.5rem;
+    }
+    
+    // Móvil pequeño
+    @include respond-max('sm') {
+      padding: 0 1rem;
+    }
   }
 
   .nav-content {
@@ -41,7 +54,7 @@ $mobile-menu-width: 280px;
   }
 }
 
-// Logo
+// ========== LOGO ==========
 .logo {
   @include flex-center;
   gap: 0.75rem;
@@ -51,6 +64,16 @@ $mobile-menu-width: 280px;
     height: 50px;
     width: auto;
     @include smooth-transition(height);
+    
+    // Móvil
+    @include respond-max('md') {
+      height: 40px;
+    }
+    
+    // Móvil pequeño
+    @include respond-max('sm') {
+      height: 35px;
+    }
   }
 }
 
@@ -64,9 +87,19 @@ $mobile-menu-width: 280px;
   &-medium {
     font-weight: 500;
   }
+  
+  // Móvil
+  @include respond-max('md') {
+    font-size: 1.3rem;
+  }
+  
+  // Móvil pequeño
+  @include respond-max('sm') {
+    font-size: 1.1rem;
+  }
 }
 
-// Menú hamburguesa
+// ========== MENÚ HAMBURGUESA ==========
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -105,14 +138,65 @@ $mobile-menu-width: 280px;
   &:hover span {
     background: $light-green;
   }
+  
+  // Mostrar en móvil
+  @include respond-max('md') {
+    display: flex;
+  }
 }
 
-// Menú de navegación
+// ========== MENÚ DE NAVEGACIÓN ==========
 .nav-menu {
   @include flex-center;
   gap: 0.5rem;
+  
+  // Móvil: menú lateral
+  @include respond-max('md') {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: $mobile-menu-width;
+    background: rgba($white, 0.98);
+    backdrop-filter: blur(20px);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2rem;
+
+    &.active {
+      right: 0;
+    }
+
+    // Overlay detrás del menú
+    &::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0);
+      pointer-events: none;
+      transition: background 0.4s ease;
+    }
+
+    &.active::before {
+      background: rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+    }
+  }
+  
+  // Móvil pequeño: menú más angosto
+  @include respond-max('sm') {
+    width: 250px;
+  }
 }
 
+// ========== BOTONES DE NAVEGACIÓN ==========
 .nav-btn {
   background: transparent;
   border: none;
@@ -157,71 +241,19 @@ $mobile-menu-width: 280px;
     transform: translateY(0);
   }
 
-  // Efecto al hacer focus (accesibilidad)
   &:focus-visible {
     outline: 2px solid $light-green;
     outline-offset: 2px;
   }
-}
-
-// Responsive - Tablets
-@media (max-width: 968px) {
-  .nav-btn {
+  
+  // Tablet
+  @include respond-max('lg') {
     font-size: 0.9rem;
     padding: 0.65rem 1.2rem;
   }
-
-  .navbar .container {
-    padding: 0 1.5rem;
-  }
-}
-
-// Responsive - Móviles
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: $mobile-menu-width;
-    background: rgba($white, 0.98);
-    backdrop-filter: blur(20px);
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2rem;
-
-    &.active {
-      right: 0;
-    }
-
-    // Overlay detrás del menú
-    &::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0);
-      pointer-events: none;
-      transition: background 0.4s ease;
-    }
-
-    &.active::before {
-      background: rgba(0, 0, 0, 0.5);
-      pointer-events: auto;
-    }
-  }
-
-  .nav-btn {
+  
+  // Móvil: botones verticales
+  @include respond-max('md') {
     width: 100%;
     text-align: center;
     font-size: 1.1rem;
@@ -236,45 +268,30 @@ $mobile-menu-width: 280px;
       }
     }
   }
-
-  .nav-menu.active .nav-btn {
-    opacity: 1;
-  }
-
-  .handwritten {
-    font-size: 1.3rem;
-  }
-
-  .logo-img {
-    height: 40px;
-  }
-}
-
-// Móviles pequeños
-@media (max-width: 480px) {
-  .navbar .container {
-    padding: 0 1rem;
-  }
-
-  .handwritten {
-    font-size: 1.1rem;
-  }
-
-  .logo-img {
-    height: 35px;
-  }
-
-  .nav-menu {
-    width: 250px;
-  }
-
-  .nav-btn {
+  
+  // Móvil pequeño
+  @include respond-max('sm') {
     font-size: 1rem;
     padding: 0.9rem 1.5rem;
   }
+  
+  // Usuarios que prefieren movimiento reducido
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    
+    &::before {
+      transition: none;
+    }
+  }
 }
 
-// Animaciones
+.nav-menu.active .nav-btn {
+  @include respond-max('md') {
+    opacity: 1;
+  }
+}
+
+// ========== ANIMACIONES ==========
 @keyframes slideInRight {
   from {
     transform: translateX(30px);
@@ -286,7 +303,7 @@ $mobile-menu-width: 280px;
   }
 }
 
-// Navbar con scroll (opcional - si quieres hacer el navbar más pequeño al scrollear)
+// ========== NAVBAR CON SCROLL ==========
 .navbar.scrolled {
   padding: 0.5rem 0;
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.12);
@@ -300,19 +317,7 @@ $mobile-menu-width: 280px;
   }
 }
 
-// Estados de carga y accesibilidad
-.nav-btn {
-  // Efecto para usuarios que prefieren movimiento reducido
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-    
-    &::before {
-      transition: none;
-    }
-  }
-}
-
-// Print styles
+// ========== PRINT STYLES ==========
 @media print {
   .navbar {
     position: relative;

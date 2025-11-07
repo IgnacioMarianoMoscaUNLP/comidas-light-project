@@ -1,3 +1,7 @@
+// ========== IMPORTS ==========
+@import '../../styles/mixins'; // ← AGREGAR ESTO AL INICIO
+
+// ========== MENU CARD ==========
 .menu-card {
   background: white;
   border-radius: 16px;
@@ -6,7 +10,9 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   
+  // Barra superior gradiente
   &::before {
     content: '';
     position: absolute;
@@ -21,76 +27,152 @@
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 20px 40px rgba(0, 0, 0, 0.1);
   }
+  
+  // Tablet y móvil
+  @include respond-max('md') {
+    padding: 1.5rem;
+  }
+}
 
-  .card-header {
-    margin-bottom: 1.5rem;
+// ========== CARD HEADER ==========
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #2d3748;
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    // Tablet y móvil
+    @include respond-max('md') {
+      font-size: 1.25rem;
     }
   }
+}
 
-  .platos-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.toggle-icon {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #667eea;
+  line-height: 1;
+  transition: all 0.3s ease;
+  user-select: none;
+  
+  // Tablet y móvil
+  @include respond-max('md') {
+    font-size: 1.75rem;
+  }
+}
 
-    li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #e2e8f0;
-      color: #4a5568;
-      font-size: 0.95rem;
+// Efecto cuando está expandido
+.menu-card.expanded {
+  .toggle-icon {
+    transform: rotate(180deg);
+  }
+}
+
+// ========== LISTA DE PLATOS ==========
+.platos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: slideDown 0.3s ease-out;
+
+  li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    color: #4a5568;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding-left: 1.5rem;
+    
+    // Flecha animada
+    &::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+      opacity: 0;
+      transform: translateX(-10px);
       transition: all 0.2s ease;
-      position: relative;
-      padding-left: 1.5rem;
+    }
+
+    &:hover {
+      color: #667eea;
+      padding-left: 2rem;
       
       &::before {
-        content: '→';
-        position: absolute;
-        left: 0;
-        color: #667eea;
-        font-weight: bold;
-        opacity: 0;
-        transform: translateX(-10px);
-        transition: all 0.2s ease;
+        opacity: 1;
+        transform: translateX(0);
       }
+    }
 
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    // Tablet y móvil
+    @include respond-max('md') {
+      font-size: 0.9rem;
+      padding: 0.6rem 0;
+      padding-left: 1.5rem;
+      
       &:hover {
-        color: #667eea;
-        padding-left: 2rem;
-        
-        &::before {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      &:last-child {
-        border-bottom: none;
+        padding-left: 1.75rem;
       }
     }
   }
 }
 
-@media (max-width: 768px) {
+// ========== ANIMACIONES ==========
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+}
+
+// ========== ACCESIBILIDAD ==========
+@media (prefers-reduced-motion: reduce) {
   .menu-card {
-    padding: 1.5rem;
+    transition: none;
     
-    .card-header h2 {
-      font-size: 1.25rem;
+    &:hover {
+      transform: none;
     }
+  }
+  
+  .platos-list {
+    animation: none;
     
-    .platos-list li {
-      font-size: 0.9rem;
+    li {
+      transition: none;
+      
+      &::before {
+        transition: none;
+      }
     }
+  }
+  
+  .toggle-icon {
+    transition: none;
   }
 }

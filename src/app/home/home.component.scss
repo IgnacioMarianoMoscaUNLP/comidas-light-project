@@ -1,3 +1,7 @@
+// ========== IMPORTS ==========
+@import '../../styles/mixins'; // ← AGREGAR ESTO AL INICIO
+
+// ========== VARIABLES CSS ==========
 :root {
   // Colores principales - Verde natural y elegante
   --primary-green: #2D5F3F;
@@ -32,9 +36,7 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ==========================================
-   NAVBAR (manejado por componente separado)
-   ========================================== */
+// ========== NAVBAR ==========
 .navbar {
   position: fixed;
   top: 0;
@@ -78,9 +80,7 @@
   color: var(--primary-dark);
 }
 
-/* ==========================================
-   HERO SECTION
-   ========================================== */
+// ========== HERO SECTION ==========
 .hero-section {
   background-image: url('/assets/images/hero-bg.png');
   background-size: cover;
@@ -97,7 +97,7 @@
   position: relative;
   margin-top: 70px;
   
-  // Overlay oscuro para mejor contraste
+  // Overlay oscuro
   &::before {
     content: '';
     position: absolute;
@@ -112,9 +112,14 @@
     );
     z-index: 1;
   }
+  
+  // Tablet
+  @include respond-max('md') {
+    height: 65vh;
+    min-height: 500px;
+  }
 }
 
-// Tarjeta con efecto glassmorphism
 .hero-card {
   position: relative;
   z-index: 2;
@@ -134,9 +139,14 @@
   text-align: center;
   
   animation: fadeInUp 0.8s ease-out;
+  
+  // Tablet
+  @include respond-max('md') {
+    padding: 40px 30px;
+    margin: 0 20px;
+  }
 }
 
-// Título principal con letra manuscrita
 .hero-title {
   font-size: 3.5rem;
   font-weight: 400;
@@ -145,6 +155,16 @@
   color: #FFFFFF;
   text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: -0.5px;
+  
+  // Tablet
+  @include respond-max('md') {
+    font-size: 2.5rem;
+  }
+  
+  // Móvil
+  @include respond-max('sm') {
+    font-size: 2rem;
+  }
 }
 
 .hero-highlight {
@@ -153,7 +173,6 @@
   text-shadow: 2px 4px 12px rgba(139, 195, 74, 0.5);
 }
 
-// Textos descriptivos
 .hero-text {
   font-size: 1.3rem;
   margin-bottom: 0.8rem;
@@ -165,9 +184,18 @@
   &:last-of-type {
     margin-bottom: 2rem;
   }
+  
+  // Tablet
+  @include respond-max('md') {
+    font-size: 1.1rem;
+  }
+  
+  // Móvil
+  @include respond-max('sm') {
+    font-size: 1rem;
+  }
 }
 
-// Badge de experiencia
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -191,6 +219,18 @@
     color: #FFFFFF;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
   }
+  
+  // Tablet
+  @include respond-max('md') {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    
+    .badge-text {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
 }
 
 @keyframes fadeInUp {
@@ -204,11 +244,14 @@
   }
 }
 
-/* ==========================================
-   SECTIONS
-   ========================================== */
+// ========== SECTIONS ==========
 .section {
   padding: 100px 0;
+  
+  // Tablet
+  @include respond-max('md') {
+    padding: 70px 0;
+  }
 }
 
 .section-title {
@@ -220,7 +263,6 @@
   letter-spacing: -0.5px;
   position: relative;
   
-  // Línea decorativa debajo del título
   &::after {
     content: '';
     display: block;
@@ -230,6 +272,16 @@
     margin: 1rem auto 0;
     border-radius: 2px;
   }
+  
+  // Tablet grande
+  @include respond-max('lg') {
+    font-size: 2.5rem;
+  }
+  
+  // Tablet
+  @include respond-max('md') {
+    font-size: 2.2rem;
+  }
 }
 
 .section-title-left {
@@ -238,11 +290,14 @@
   margin-bottom: 2rem;
   color: var(--text-dark);
   letter-spacing: -0.5px;
+  
+  // Tablet
+  @include respond-max('md') {
+    font-size: 2.2rem;
+  }
 }
 
-/* ==========================================
-   BENEFITS SECTION - MEJORADA CON 4 COLUMNAS
-   ========================================== */
+// ========== BENEFITS SECTION ==========
 .benefits-section {
   background: var(--bg-white);
   padding: 5rem 0;
@@ -250,9 +305,26 @@
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); // 4 columnas por defecto
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 3rem;
+  
+  // Tablet grande: 3 columnas
+  @include respond-max('lg') {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  // Tablet: 2 columnas
+  @include respond-max('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  // Móvil: 1 columna
+  @include respond-max('sm') {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 .benefit-card {
@@ -267,9 +339,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%; // Todas las cartas misma altura
+  height: 100%;
   
-  // Efecto de fondo al hover
   &::before {
     content: '';
     position: absolute;
@@ -298,10 +369,59 @@
     }
   }
   
-  // Todo el contenido sobre el efecto de fondo
   > * {
     position: relative;
     z-index: 1;
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    line-height: 1.4;
+    
+    // Móvil
+    @include respond-max('sm') {
+      font-size: 1rem;
+    }
+  }
+  
+  p {
+    color: var(--text-medium);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 0;
+    
+    // Móvil
+    @include respond-max('sm') {
+      font-size: 0.875rem;
+    }
+  }
+  
+  // Móvil
+  @include respond-max('sm') {
+    padding: 1.5rem 1rem;
+  }
+  
+  // Animación de entrada
+  animation: slideInUp 0.6s ease forwards;
+  
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+      opacity: 0;
+    }
+  }
+  
+  // Sin animación si prefieren movimiento reducido
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+    
+    &:hover {
+      transform: none;
+    }
   }
 }
 
@@ -311,24 +431,13 @@
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
   transition: transform 0.3s ease;
+  
+  // Móvil
+  @include respond-max('sm') {
+    font-size: 2.5rem;
+  }
 }
 
-.benefit-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: var(--primary-dark);
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.benefit-card p {
-  color: var(--text-medium);
-  line-height: 1.7;
-  font-size: 1rem;
-  margin: 0;
-}
-
-// Animación de entrada escalonada
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -340,28 +449,15 @@
   }
 }
 
-.benefit-card {
-  animation: slideInUp 0.6s ease forwards;
-  
-  @for $i from 1 through 4 {
-    &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.1}s;
-      opacity: 0;
-    }
-  }
-}
-
-/* ==========================================
-   ABOUT SECTION
-   ========================================== */
+// ========== ABOUT SECTION ==========
 .about-section {
   background: linear-gradient(135deg, #3A7D5C 0%, #2D5F3F 100%);
   color: white;
-}
-
-.about-section .section-title-left {
-  color: #FFFFFF;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  
+  .section-title-left {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .about-content {
@@ -369,6 +465,12 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  
+  // Tablet
+  @include respond-max('md') {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 
 .about-description {
@@ -377,12 +479,12 @@
   margin-bottom: 1.5rem;
   color: #FFFFFF;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.about-description strong {
-  color: #D4E157;
-  font-weight: 700;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  
+  strong {
+    color: #D4E157;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .about-features {
@@ -428,6 +530,20 @@
   align-items: center;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
+  
+  // Tablet
+  @include respond-max('md') {
+    max-width: 300px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .placeholder-icon {
@@ -436,18 +552,7 @@
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.image-placeholder p {
-  font-size: 1.2rem;
-  text-align: center;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #FFFFFF;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* ==========================================
-   CARTA SECTION
-   ========================================== */
+// ========== CARTA SECTION ==========
 .carta-section {
   background: #FFFFFF;
 }
@@ -474,9 +579,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* ==========================================
-   CONTACT SECTION
-   ========================================== */
+// ========== CONTACT SECTION ==========
 .contact-section {
   background: linear-gradient(135deg, #F9F9F7 0%, #FFFFFF 100%);
   text-align: center;
@@ -505,6 +608,12 @@
   border: none;
   cursor: pointer;
   font-size: 1.1rem;
+  
+  // Móvil
+  @include respond-max('sm') {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
 }
 
 .btn-accent {
@@ -523,6 +632,12 @@
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  
+  // Tablet
+  @include respond-max('md') {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .social-link {
@@ -554,9 +669,7 @@
   font-weight: 600;
 }
 
-/* ==========================================
-   FOOTER
-   ========================================== */
+// ========== FOOTER ==========
 .footer {
   background: var(--primary-dark);
   color: var(--primary-green);
@@ -568,19 +681,30 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
   margin-bottom: 3rem;
+  
+  // Tablet
+  @include respond-max('md') {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-}
-
-.footer-brand p {
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: white;
-  margin: 0;
+  
+  // Tablet
+  @include respond-max('md') {
+    align-items: center;
+  }
+  
+  p {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    margin: 0;
+  }
 }
 
 .footer-tagline {
@@ -605,17 +729,17 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.footer-social-links a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  transition: var(--transition);
-  font-size: 0.95rem;
   
-  &:hover {
-    color: var(--accent-light);
-    padding-left: 5px;
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    
+    &:hover {
+      color: var(--accent-light);
+      padding-left: 5px;
+    }
   }
 }
 
@@ -623,12 +747,12 @@
   text-align: center;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-bottom p {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-  color: grey;
+  
+  p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: grey;
+  }
 }
 
 .developer-credit {
@@ -647,9 +771,7 @@
   }
 }
 
-/* ==========================================
-   WHATSAPP FLOAT
-   ========================================== */
+// ========== WHATSAPP FLOAT ==========
 .whatsapp-float {
   position: fixed;
   bottom: 30px;
@@ -670,6 +792,14 @@
     transform: scale(1.1);
     box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
   }
+  
+  // Tablet
+  @include respond-max('md') {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
 @keyframes pulse {
@@ -681,151 +811,10 @@
   }
 }
 
-/* ==========================================
-   RESPONSIVE - TABLETS GRANDES
-   ========================================== */
-@media (max-width: 1024px) {
-  .benefits-grid {
-    grid-template-columns: repeat(3, 1fr); // 3 columnas en tablets grandes
-    gap: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-  }
-}
-
-/* ==========================================
-   RESPONSIVE - TABLETS
-   ========================================== */
-@media (max-width: 768px) {
-  .hero-section {
-    height: 65vh;
-    min-height: 500px;
-  }
-  
-  .hero-card {
-    padding: 40px 30px;
-    margin: 0 20px;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-text {
-    font-size: 1.1rem;
-  }
-  
-  .hero-badge {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem 1.5rem;
-    
-    .badge-text {
-      font-size: 0.9rem;
-      text-align: center;
-    }
-  }
-  
-  .section {
-    padding: 70px 0;
-  }
-  
-  .section-title,
-  .section-title-left {
-    font-size: 2.2rem;
-  }
-  
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  
-  .image-placeholder {
-    max-width: 300px;
-  }
-  
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr); // 2 columnas en tablets
-  }
-  
-  .social-links {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  
-  .footer-brand {
-    align-items: center;
-  }
-  
-  .whatsapp-float {
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-  }
-}
-
-/* ==========================================
-   RESPONSIVE - MÓVILES
-   ========================================== */
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-text {
-    font-size: 1rem;
-  }
-  
-  .btn {
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-  
-  .benefits-grid {
-    grid-template-columns: 1fr; // 1 columna en móviles
-    gap: 1.25rem;
-  }
-  
-  .benefit-card {
-    padding: 1.5rem 1rem;
-  }
-
-  .benefit-icon {
-    font-size: 2.5rem;
-  }
-
-  .benefit-card h3 {
-    font-size: 1rem;
-  }
-
-  .benefit-card p {
-    font-size: 0.875rem;
-  }
-}
-
-/* ==========================================
-   ACCESIBILIDAD
-   ========================================== */
+// ========== ACCESIBILIDAD ==========
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition: none !important;
-  }
-  
-  .benefit-card {
-    animation: none;
-    opacity: 1;
-    
-    &:hover {
-      transform: none;
-    }
   }
 }
