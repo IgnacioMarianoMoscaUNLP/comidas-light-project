@@ -10,11 +10,12 @@ import { NutritionistIconComponent } from "../shared/icons/nutritionist.icon/nut
 import { DeliveryIconComponent } from "../shared/icons/delivery.icon/delivery.icon.component";
 import { PlateIconComponent } from '../shared/icons/plate.icon/plate.icon.component';
 import { HowItWorksComponent } from '../how-it-works/how-it-works.component';
+import { PackSelectorBarComponent } from "../pack-selector-bar/pack-selector-bar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ɵEmptyOutletComponent, MenusectionComponent, NavbarComponent, HealthyFoodIconComponent, FrozenIconComponent, NutritionistIconComponent, DeliveryIconComponent,PlateIconComponent,HowItWorksComponent],
+  imports: [CommonModule, ɵEmptyOutletComponent, MenusectionComponent, NavbarComponent, HealthyFoodIconComponent, FrozenIconComponent, NutritionistIconComponent, DeliveryIconComponent, PlateIconComponent, HowItWorksComponent, PackSelectorBarComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
